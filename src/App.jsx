@@ -124,6 +124,7 @@
 import Navbar from "./components/layout/Navbar"
 import Hero from "./components/sections/Hero"
 import About from "./components/sections/About"
+import Skills from "./components/sections/Skills"
 
 
 function App() {
@@ -133,9 +134,10 @@ function App() {
       <main>
         <Hero />
         <About />
+        <Skills />
       </main>
 
-      <main
+      {/* <main
         id="home"
         className="flex min-h-screen items-center justify-center bg-slate-950 px-6 pt-24 text-white"
       >
@@ -148,7 +150,7 @@ function App() {
             Software Developer Portfolio
           </p>
         </div>
-      </main>
+      </main> */}
     </> 
   )
 }
