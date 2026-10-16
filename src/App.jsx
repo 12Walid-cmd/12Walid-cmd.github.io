@@ -125,16 +125,65 @@ import Navbar from "./components/layout/Navbar"
 import Hero from "./components/sections/Hero"
 import About from "./components/sections/About"
 import Skills from "./components/sections/Skills"
+import Projects from "./components/sections/Projects"
+import { useRef } from "react";
 
 
 function App() {
+
+  const skillsPanel = useRef(null);
+const projectsPanel = useRef(null);
+
+function showPanel(panel) {
+  panel.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+    inline: "start",
+  });
+}
   return (
     <>
       <Navbar />
       <main>
         <Hero />
         <About />
-        <Skills />
+       <div className="bg-slate-950">
+  {/* Clickable navigation */}
+  <div className="flex justify-center gap-4 px-6 pt-10">
+    <button
+      type="button"
+      onClick={() => showPanel(skillsPanel)}
+      className="rounded-full bg-slate-800 px-6 py-3 text-white hover:bg-slate-700"
+    >
+      Skills
+    </button>
+
+    <button
+      type="button"
+      onClick={() => showPanel(projectsPanel)}
+      className="rounded-full bg-slate-800 px-6 py-3 text-white hover:bg-slate-700"
+    >
+      Projects
+    </button>
+  </div>
+
+  {/* Swipeable panels */}
+  <div className="flex snap-x snap-mandatory overflow-x-auto">
+    <div
+      ref={skillsPanel}
+      className="w-full min-w-0 shrink-0 snap-start"
+    >
+      <Skills />
+    </div>
+
+    <div
+      ref={projectsPanel}
+      className="w-full min-w-0 shrink-0 snap-start"
+    >
+      <Projects />
+    </div>
+  </div>
+</div>
       </main>
 
       {/* <main

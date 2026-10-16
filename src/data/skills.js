@@ -3,7 +3,7 @@
 const skillCategories = [
   {
     title: "Languages",
-    skills: ["Java", "JavaScript", "Kotlin", "SQL"]
+    skills: ["Java", "JavaScript", "Kotlin","Python","C#","PHP", "SQL"]
   },
 
    {
