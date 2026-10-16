@@ -1,42 +1,45 @@
-function Navbar() {
+import Arrow from "../ui/Arrow";
+import ResourceLink from "../ui/ResourceLink";
+import { useState } from "react";
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#home" className="text-xl font-bold text-white">
-          Walid<span className="text-blue-500">.</span>
+    <header className="site-header">
+      <nav className="shell nav" aria-label="Main navigation">
+        <a className="wordmark" href="#home" onClick={() => setOpen(false)}>
+          Walid<span> / </span>
+          <small>SOFTWARE DEVELOPER</small>
         </a>
-
-        <div className="hidden items-center gap-8 md:flex">
-          <a href="#about" className="text-sm text-slate-300 hover:text-white">
-            About
-          </a>
-
-          <a href="#skills" className="text-sm text-slate-300 hover:text-white">
-            Skills
-          </a>
-
-          <a href="#experience" className="text-sm text-slate-300 hover:text-white">
-            Experience
-          </a>
-
-          <a href="#projects" className="text-sm text-slate-300 hover:text-white">
-            Projects
-          </a>
-
-          <a href="#contact" className="text-sm text-slate-300 hover:text-white">
-            Contact
-          </a>
-        </div>
-
-        <a
-          href="/resume.pdf"
-          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
+        <button
+          className="menu-toggle"
+          aria-expanded={open}
+          aria-controls="nav-links"
+          onClick={() => setOpen(!open)}
         >
-          Resume
-        </a>
+          {open ? "Close −" : "Menu +"}
+        </button>
+        <div id="nav-links" className={`nav-links ${open ? "is-open" : ""}`}>
+          {["About", "Skills", "Projects"].map((label, i) => (
+            <a
+              key={label}
+              href={`#${label.toLowerCase()}`}
+              onClick={() => setOpen(false)}
+            >
+              <small>0{i + 1}</small> {label}
+            </a>
+          ))}
+          <ResourceLink href="#experience" onClick={() => setOpen(false)}>
+            Experience
+          </ResourceLink>
+          <ResourceLink href="#contact" onClick={() => setOpen(false)}>
+            Contact
+          </ResourceLink>
+          <ResourceLink className="resume-link" href="/resume.pdf">
+            Resume <Arrow />
+          </ResourceLink>
+        </div>
       </nav>
     </header>
-  )
+  );
 }
-
-export default Navbar
